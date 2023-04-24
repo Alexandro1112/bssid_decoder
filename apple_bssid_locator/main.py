@@ -4,7 +4,7 @@ import re
 from CoreWLAN import CWNetwork, CWWiFiClient
 import platform
 
-if platform.platform() == 'darwin':
+if 'macOS' in platform.platform():
     objc.loadBundle(
         u"CoreWLAN",
         bundle_path=u"/System/Library/Frameworks/CoreWLAN.framework",
@@ -28,8 +28,8 @@ if platform.platform() == 'darwin':
         for b in bssid.split():
             for j in range(len(bssid.split())):
 
-                print(subprocess.getoutput(cmd=f"python apple_bssid_locator.py {b} --map",
+                print(subprocess.getoutput(cmd=f"python decoder.py {b} --map",
                                            encoding="utf-8", errors=None))
 
 else:
-    quit()
+    quit('Error OS')
